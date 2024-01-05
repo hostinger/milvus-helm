@@ -17,6 +17,9 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
+{{- if .Values.attu.ingress.className }}
+  ingressClassName: {{ .Values.attu.ingress.className }}
+{{- end }}
 {{- if .Values.attu.ingress.tls }}
   tls:
   {{- range .Values.attu.ingress.tls }}
@@ -26,11 +29,6 @@ spec:
       {{- end }}
       secretName: {{ .secretName }}
   {{- end }}
-  defaultBackend:
-    service:
-      name: {{ $attuServiceName }}
-      port: 
-        number: {{ $attuServicePort }}
 {{- end }}
   
 {{- if .Values.attu.ingress.hosts }}
