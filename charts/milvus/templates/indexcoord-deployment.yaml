@@ -158,6 +158,10 @@ spec:
       tolerations:
 {{ toYaml .Values.indexCoordinator.tolerations | indent 8 }}
     {{- end }}
+    {{- if .Values.indexCoordinator.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{ toYaml .Values.indexCoordinator.topologySpreadConstraints | indent 8 }}
+    {{- end }}
 
       volumes:
       {{- if .Values.indexNode.extraVolumes }}

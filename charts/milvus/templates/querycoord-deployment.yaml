@@ -155,6 +155,10 @@ spec:
       tolerations:
 {{ toYaml .Values.queryCoordinator.tolerations | indent 8 }}
     {{- end }}
+    {{- if .Values.queryCoordinator.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{ toYaml .Values.queryCoordinator.topologySpreadConstraints | indent 8 }}
+    {{- end }}
 
       volumes:
       {{- if .Values.queryCoordinator.extraVolumes }}

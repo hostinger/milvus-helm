@@ -232,6 +232,7 @@ proxy:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -268,6 +269,7 @@ rootCoordinator:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -292,6 +294,7 @@ queryCoordinator:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -319,6 +322,7 @@ queryNode:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   disk:
@@ -339,6 +343,7 @@ indexCoordinator:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -366,6 +371,7 @@ indexNode:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -386,6 +392,7 @@ dataCoordinator:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -410,6 +417,7 @@ dataNode:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:
@@ -428,6 +436,7 @@ mixCoordinator:
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
+  topologySpreadConstraints: []
   heaptrack:
     enabled: false
   profiling:

@@ -159,6 +159,10 @@ spec:
       tolerations:
 {{ toYaml .Values.proxy.tolerations | indent 8 }}
     {{- end }}
+    {{- if .Values.proxy.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{ toYaml .Values.proxy.topologySpreadConstraints | indent 8 }}
+    {{- end }}
 
       volumes:
       {{- if .Values.proxy.extraVolumes }}

@@ -152,6 +152,10 @@ spec:
       tolerations:
 {{ toYaml .Values.mixCoordinator.tolerations | indent 8 }}
     {{- end }}
+    {{- if .Values.mixCoordinator.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{ toYaml .Values.mixCoordinator.topologySpreadConstraints | indent 8 }}
+    {{- end }}
 
       volumes:
       {{- if .Values.mixCoordinator.extraVolumes }}
