@@ -113,6 +113,9 @@ spec:
         resources:
           {{- toYaml .Values.proxy.resources | nindent 10 }}
         volumeMounts:
+        {{- if .Values.proxy.extraVolumeMounts }}
+          {{- toYaml .Values.proxy.extraVolumeMounts | nindent 8 }}
+        {{- end }}
         - name: milvus-config
           mountPath: /milvus/configs/default.yaml
           subPath: default.yaml
@@ -158,6 +161,9 @@ spec:
     {{- end }}
 
       volumes:
+      {{- if .Values.proxy.extraVolumes }}
+        {{- toYaml .Values.proxy.extraVolumes | nindent 6 }}
+      {{- end }}
       - name: milvus-config
         configMap:
           name: {{ template "milvus.fullname" . }}

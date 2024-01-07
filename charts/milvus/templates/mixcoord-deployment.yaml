@@ -109,6 +109,9 @@ spec:
         resources:
           {{- toYaml .Values.mixCoordinator.resources | nindent 10 }}
         volumeMounts:
+        {{- if .Values.mixCoordinator.extraVolumeMounts }}
+        {{- toYaml .Values.mixCoordinator.extraVolumeMounts | nindent 8 }}
+        {{- end }}
         - name: milvus-config
           mountPath: /milvus/configs/default.yaml
           subPath: default.yaml
@@ -151,6 +154,9 @@ spec:
     {{- end }}
 
       volumes:
+      {{- if .Values.mixCoordinator.extraVolumes }}
+      {{- toYaml .Values.mixCoordinator.extraVolumes | nindent 6 }}
+      {{- end }}
       - name: milvus-config
         configMap:
           name: {{ template "milvus.fullname" . }}

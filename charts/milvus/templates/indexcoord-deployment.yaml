@@ -112,6 +112,9 @@ spec:
         resources:
           {{- toYaml .Values.indexCoordinator.resources | nindent 10 }}
         volumeMounts:
+        {{- if .Values.indexCoordinator.extraVolumeMounts }}
+        {{- toYaml .Values.indexCoordinator.extraVolumeMounts | nindent 8 }}
+        {{- end }}
         - name: milvus-config
           mountPath: /milvus/configs/default.yaml
           subPath: default.yaml
@@ -127,6 +130,9 @@ spec:
         {{- end }}
         - mountPath: /milvus/tools
           name: tools
+        {{- if .Values.indexCoordinator.extraVolumeMounts }}
+          {{- toYaml .Values.indexCoordinator.extraVolumeMounts | nindent 8 }}
+        {{- end }}
 
     {{- if and (.Values.nodeSelector) (not .Values.indexCoordinator.nodeSelector) }}
       nodeSelector:
@@ -154,6 +160,9 @@ spec:
     {{- end }}
 
       volumes:
+      {{- if .Values.indexNode.extraVolumes }}
+      {{- toYaml .Values.indexNode.extraVolumes | nindent 6 }}
+      {{- end }}
       - name: milvus-config
         configMap:
           name: {{ template "milvus.fullname" . }}

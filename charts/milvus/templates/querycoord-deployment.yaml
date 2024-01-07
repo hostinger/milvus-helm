@@ -127,6 +127,9 @@ spec:
         {{- end }}
         - mountPath: /milvus/tools
           name: tools
+        {{- if .Values.queryCoordinator.extraVolumeMounts }}
+          {{- toYaml .Values.queryCoordinator.extraVolumeMounts | nindent 8 }}
+        {{- end }}
 
     {{- if and (.Values.nodeSelector) (not .Values.queryCoordinator.nodeSelector) }}
       nodeSelector:
@@ -154,6 +157,9 @@ spec:
     {{- end }}
 
       volumes:
+      {{- if .Values.queryCoordinator.extraVolumes }}
+      {{- toYaml .Values.queryCoordinator.extraVolumes | nindent 6 }}
+      {{- end }}
       - name: milvus-config
         configMap:
           name: {{ template "milvus.fullname" . }}

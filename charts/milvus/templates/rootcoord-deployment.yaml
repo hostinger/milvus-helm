@@ -112,6 +112,9 @@ spec:
         resources:
           {{- toYaml .Values.rootCoordinator.resources | nindent 10 }}
         volumeMounts:
+        {{- if .Values.rootCoordinator.extraVolumeMounts }}
+          {{- toYaml .Values.rootCoordinator.extraVolumeMounts | nindent 8 }}
+        {{- end }}
         - name: milvus-config
           mountPath: /milvus/configs/default.yaml
           subPath: default.yaml
@@ -154,6 +157,9 @@ spec:
     {{- end }}
 
       volumes:
+      {{- if .Values.rootCoordinator.extraVolumes }}
+        {{- toYaml .Values.rootCoordinator.extraVolumes | nindent 6 }}
+      {{- end }}
       - name: milvus-config
         configMap:
           name: {{ template "milvus.fullname" . }}
@@ -164,4 +170,5 @@ spec:
       {{- end }}
       - name: tools
         emptyDir: {}
+
 {{- end }}

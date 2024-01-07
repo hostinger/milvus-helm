@@ -119,6 +119,9 @@ spec:
         resources:
           {{- toYaml .Values.queryNode.resources | nindent 10 }}
         volumeMounts:
+        {{- if .Values.queryNode.extraVolumeMounts }}
+          {{- toYaml .Values.queryNode.extraVolumeMounts | nindent 8 }}
+        {{- end }}
         - name: milvus-config
           mountPath: /milvus/configs/default.yaml
           subPath: default.yaml
@@ -165,6 +168,9 @@ spec:
     {{- end }}
 
       volumes:
+      {{- if .Values.queryNode.extraVolumes }}
+        {{- toYaml .Values.rootCoordinator.extraVolumes | nindent 6 }}
+      {{- end }}
       - name: milvus-config
         configMap:
           name: {{ template "milvus.fullname" . }}

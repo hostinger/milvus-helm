@@ -230,6 +230,8 @@ proxy:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -264,6 +266,8 @@ rootCoordinator:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -286,6 +290,8 @@ queryCoordinator:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -311,6 +317,8 @@ queryNode:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   disk:
@@ -329,6 +337,8 @@ indexCoordinator:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -354,6 +364,8 @@ indexNode:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -372,6 +384,8 @@ dataCoordinator:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -394,6 +408,8 @@ dataNode:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
@@ -410,6 +426,8 @@ mixCoordinator:
   affinity: {}
   tolerations: []
   extraEnv: []
+  extraVolumeMounts: []
+  extraVolumes: []
   heaptrack:
     enabled: false
   profiling:
