@@ -130,9 +130,6 @@ spec:
         {{- end }}
         - mountPath: /milvus/tools
           name: tools
-        {{- if .Values.indexCoordinator.extraVolumeMounts }}
-          {{- toYaml .Values.indexCoordinator.extraVolumeMounts | nindent 8 }}
-        {{- end }}
 
     {{- if and (.Values.nodeSelector) (not .Values.indexCoordinator.nodeSelector) }}
       nodeSelector:
