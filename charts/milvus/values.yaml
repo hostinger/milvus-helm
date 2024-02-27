@@ -5,7 +5,7 @@ cluster:
 image:
   all:
     repository: milvusdb/milvus
-    tag: v2.3.4
+    tag: v2.3.10
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
@@ -454,7 +454,7 @@ attu:
   name: attu
   image:
     repository: zilliz/attu
-    tag: v2.2.8
+    tag: v2.3.0
     pullPolicy: IfNotPresent
   service:
     annotations: {}
@@ -480,7 +480,7 @@ attu:
 
 
 ## Configuration values for the minio dependency
-## ref: https://github.com/minio/charts/blob/master/README.md
+## ref: https://github.com/zilliztech/milvus-helm/blob/master/charts/minio/README.md
 ##
 
 minio:
@@ -558,7 +558,7 @@ etcd:
     create: false
   image:
     repository: "milvusdb/etcd"
-    tag: "3.5.5-r2"
+    tag: "3.5.5-r4"
     pullPolicy: IfNotPresent
 
   service:
@@ -930,6 +930,18 @@ externalPulsar:
 ###################################
 # External kafka
 # - these configs are only used when `externalKafka.enabled` is true
+# - note that the following are just examples, you should confirm the 
+#   value of brokerList and mechanisms according to the actual external 
+#   Kafka configuration. E.g. If you select the AWS MSK, the configuration
+#   should look something like this:
+#   externalKafka:
+#     enabled: true
+#     brokerList: "xxxx:9096"
+#     securityProtocol: SASL_SSL
+#     sasl:
+#       mechanisms: SCRAM-SHA-512
+#       password: "xxx"
+#       username: "xxx"
 ###################################
 externalKafka:
   enabled: false
