@@ -61,6 +61,10 @@ spec:
         - /milvus/tools/run-helm.sh,/milvus/tools/merge
         image: "{{ .Values.image.tools.repository }}:{{ .Values.image.tools.tag }}"
         imagePullPolicy: {{ .Values.image.tools.pullPolicy}}
+        {{- with .Values.dataNode.tools.resources }}
+        resources:
+        {{- toYaml . | nindent 10 }}
+        {{- end }}
         volumeMounts:
         - mountPath: /milvus/tools
           name: tools
