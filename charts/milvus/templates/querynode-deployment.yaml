@@ -33,6 +33,14 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
 {{ include "milvus.ud.annotations" . | indent 8 }}
     spec:
+      {{- if and (.Values.securityContext) (not .Values.queryNode.securityContext) }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
+      {{- end }}
+      {{- if .Values.queryNode.securityContext }}
+      securityContext:
+        {{- toYaml .Values.queryNode.securityContext | nindent 8 }}
+      {{- end }}
       serviceAccountName: {{ include "milvus.serviceAccount" . }}
       {{- if .Values.image.all.pullSecrets }}
       imagePullSecrets:
@@ -49,6 +57,14 @@ spec:
         - "cp -r /opt/heaptrack /milvus/tools"
         image: "{{ .Values.heaptrack.image.repository }}:{{ .Values.heaptrack.image.tag }}"
         imagePullPolicy: {{ .Values.heaptrack.image.pullPolicy }}
+        {{- if and (.Values.containerSecurityContext) (not .Values.queryNode.containerSecurityContext) }}
+        securityContext:
+          {{- toYaml .Values.containerSecurityContext | nindent 10 }}
+        {{- end }}
+        {{- if .Values.queryNode.containerSecurityContext }}
+        securityContext:
+          {{- toYaml .Values.queryNode.containerSecurityContext | nindent 10 }}
+        {{- end }}
         volumeMounts:
         - mountPath: /milvus/tools
           name: tools
@@ -60,6 +76,14 @@ spec:
         - /milvus/tools/run-helm.sh,/milvus/tools/merge
         image: "{{ .Values.image.tools.repository }}:{{ .Values.image.tools.tag }}"
         imagePullPolicy: {{ .Values.image.tools.pullPolicy}}
+        {{- if and (.Values.containerSecurityContext) (not .Values.queryNode.containerSecurityContext) }}
+        securityContext:
+          {{- toYaml .Values.containerSecurityContext | nindent 10 }}
+        {{- end }}
+        {{- if .Values.queryNode.containerSecurityContext }}
+        securityContext:
+          {{- toYaml .Values.queryNode.containerSecurityContext | nindent 10 }}
+        {{- end }}
         {{- with .Values.queryNode.tools.resources }}
         resources:
         {{- toYaml . | nindent 10 }}
@@ -71,6 +95,14 @@ spec:
       - name: querynode
         image: "{{ .Values.image.all.repository }}:{{ .Values.image.all.tag }}"
         imagePullPolicy: {{ .Values.image.all.pullPolicy }}
+        {{- if and (.Values.containerSecurityContext) (not .Values.queryNode.containerSecurityContext) }}
+        securityContext:
+          {{- toYaml .Values.containerSecurityContext | nindent 10 }}
+        {{- end }}
+        {{- if .Values.queryNode.containerSecurityContext }}
+        securityContext:
+          {{- toYaml .Values.queryNode.containerSecurityContext | nindent 10 }}
+        {{- end }}
         {{- if .Values.queryNode.heaptrack.enabled }}
         args: [ "/milvus/tools/run-helm.sh", "/milvus/tools/heaptrack/bin/heaptrack", "milvus", "run", "querynode" ]
         {{- else }}

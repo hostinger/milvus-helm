@@ -246,6 +246,8 @@ The following table lists the configurable parameters of the Milvus Service and 
 | `image.tools.tag`                         | Config image tag                              | `v0.1.2`                           |
 | `image.tools.pullPolicy`                  | Config image pull policy                      | `IfNotPresent`                                          |
 | `extraConfigFiles`                        | Extra config to override default milvus.yaml  | `user.yaml:`                                                     |
+| `securityContext`                         | Pod-level security context applied to all Milvus components | `{}` |
+| `containerSecurityContext`                | Container-level security context applied to every container and initContainer of all Milvus components | `{}` |
 | `service.type`                            | Service type                                  | `ClusterIP`                                             |
 | `service.port`                            | Port where service is exposed                 | `19530`                                                 |
 | `service.portName`                        | Useful for [Istio protocol selection](https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/)   | `milvus`                                                |
@@ -321,6 +323,8 @@ The following table lists the configurable parameters of the Milvus Standalone c
 | `standalone.nodeSelector`                 | Node labels for Milvus Standalone pods assignment | `{}`                                                |
 | `standalone.affinity`                     | Affinity settings for Milvus Standalone pods assignment | `{}`                                          |
 | `standalone.tolerations`                  | Toleration labels for Milvus Standalone pods assignment | `[]`                                          |
+| `standalone.securityContext`          | Pod-level security context for Milvus Standalone pods | `{}` |
+| `standalone.containerSecurityContext` | Container-level security context for Milvus Standalone containers | `{}` |
 | `standalone.heaptrack.enabled`            | Whether to enable heaptrack                             | `false`                                          |
 | `standalone.disk.enabled`                 | Whether to enable disk                             | `true`                                          |
 | `standalone.profiling.enabled`            | Whether to enable live profiling                   | `false`                                          |
@@ -347,6 +351,8 @@ The following table lists the configurable parameters of the Milvus Proxy compon
 | `proxy.nodeSelector`                      | Node labels for Milvus Proxy pods assignment | `{}`                                                     |
 | `proxy.affinity`                          | Affinity settings for Milvus Proxy pods assignment | `{}`                                               |
 | `proxy.tolerations`                       | Toleration labels for Milvus Proxy pods assignment | `[]`                                               |
+| `proxy.securityContext`          | Pod-level security context for Milvus Proxy pods | `{}` |
+| `proxy.containerSecurityContext` | Container-level security context for Milvus Proxy containers | `{}` |
 | `proxy.heaptrack.enabled`                 | Whether to enable heaptrack                             | `false`                                          |
 | `proxy.profiling.enabled`                 | Whether to enable live profiling                   | `false`                                          |
 | `proxy.extraEnv`                          | Additional Milvus Proxy container environment variables | `[]`                                          |
@@ -365,6 +371,8 @@ The following table lists the configurable parameters of the Milvus Root Coordin
 | `rootCoordinator.nodeSelector`            | Node labels for Milvus Root Coordinator pods assignment | `{}`                                          |
 | `rootCoordinator.affinity`                | Affinity settings for Milvus Root Coordinator pods assignment | `{}`                                    |
 | `rootCoordinator.tolerations`             | Toleration labels for Milvus Root Coordinator pods assignment | `[]`                                    |
+| `rootCoordinator.securityContext`          | Pod-level security context for Milvus Root Coordinator pods | `{}` |
+| `rootCoordinator.containerSecurityContext` | Container-level security context for Milvus Root Coordinator containers | `{}` |
 | `rootCoordinator.heaptrack.enabled`       | Whether to enable heaptrack                             | `false`                                          |
 | `rootCoordinator.profiling.enabled`       | Whether to enable live profiling                   | `false`                                          |
 | `rootCoordinator.activeStandby.enabled`   | Whether to enable active-standby                   | `false`                                          |
@@ -389,6 +397,8 @@ The following table lists the configurable parameters of the Milvus Query Coordi
 | `queryCoordinator.nodeSelector`           | Node labels for Milvus Query Coordinator pods assignment | `{}`                                         |
 | `queryCoordinator.affinity`               | Affinity settings for Milvus Query Coordinator pods assignment | `{}`                                   |
 | `queryCoordinator.tolerations`            | Toleration labels for Milvus Query Coordinator pods assignment | `[]`                                   |
+| `queryCoordinator.securityContext`          | Pod-level security context for Milvus Query Coordinator pods | `{}` |
+| `queryCoordinator.containerSecurityContext` | Container-level security context for Milvus Query Coordinator containers | `{}` |
 | `queryCoordinator.heaptrack.enabled`      | Whether to enable heaptrack                             | `false`                                          |
 | `queryCoordinator.profiling.enabled`      | Whether to enable live profiling                   | `false`                                          |
 | `queryCoordinator.activeStandby.enabled`  | Whether to enable active-standby                   | `false`                                          |
@@ -414,6 +424,8 @@ The following table lists the configurable parameters of the Milvus Query Node c
 | `queryNode.nodeSelector`                  | Node labels for Milvus Query Node pods assignment | `{}`                                                |
 | `queryNode.affinity`                      | Affinity settings for Milvus Query Node pods assignment | `{}`                                          |
 | `queryNode.tolerations`                   | Toleration labels for Milvus Query Node pods assignment | `[]`                                          |
+| `queryNode.securityContext`          | Pod-level security context for Milvus Query Node pods | `{}` |
+| `queryNode.containerSecurityContext` | Container-level security context for Milvus Query Node containers | `{}` |
 | `queryNode.heaptrack.enabled`             | Whether to enable heaptrack                             | `false`                                          |
 | `queryNode.disk.enabled`                  | Whether to enable disk for query                             | `true`                                          |
 | `queryNode.profiling.enabled`             | Whether to enable live profiling                   | `false`                                          |
@@ -430,6 +442,8 @@ The following table lists the configurable parameters of the Milvus Index Coordi
 | `indexCoordinator.nodeSelector`           | Node labels for Milvus Index Coordinator pods assignment | `{}`                                         |
 | `indexCoordinator.affinity`               | Affinity settings for Milvus Index Coordinator pods assignment | `{}`                                   |
 | `indexCoordinator.tolerations`            | Toleration labels for Milvus Index Coordinator pods assignment | `[]`                                   |
+| `indexCoordinator.securityContext`          | Pod-level security context for Milvus Index Coordinator pods | `{}` |
+| `indexCoordinator.containerSecurityContext` | Container-level security context for Milvus Index Coordinator containers | `{}` |
 | `indexCoordinator.heaptrack.enabled`      | Whether to enable heaptrack                             | `false`                                          |
 | `indexCoordinator.profiling.enabled`      | Whether to enable live profiling                   | `false`                                          |
 | `indexCoordinator.activeStandby.enabled`  | Whether to enable active-standby                   | `false`                                          |
@@ -455,6 +469,8 @@ The following table lists the configurable parameters of the Milvus Index Node c
 | `indexNode.nodeSelector`                  | Node labels for Milvus Index Node pods assignment | `{}`                                                |
 | `indexNode.affinity`                      | Affinity settings for Milvus Index Node pods assignment | `{}`                                          |
 | `indexNode.tolerations`                   | Toleration labels for Milvus Index Node pods assignment | `[]`                                          |
+| `indexNode.securityContext`          | Pod-level security context for Milvus Index Node pods | `{}` |
+| `indexNode.containerSecurityContext` | Container-level security context for Milvus Index Node containers | `{}` |
 | `indexNode.heaptrack.enabled`             | Whether to enable heaptrack                             | `false`                                          |
 | `indexNode.disk.enabled`                  | Whether to enable disk for index node                             | `true`                                          |
 | `indexNode.profiling.enabled`             | Whether to enable live profiling                   | `false`                                          |
@@ -471,6 +487,8 @@ The following table lists the configurable parameters of the Milvus Data Coordin
 | `dataCoordinator.nodeSelector`            | Node labels for Milvus Data Coordinator pods assignment | `{}`                                          |
 | `dataCoordinator.affinity`                | Affinity settings for Milvus Data Coordinator pods assignment  | `{}`                                   |
 | `dataCoordinator.tolerations`             | Toleration labels for Milvus Data Coordinator pods assignment | `[]`                                    |
+| `dataCoordinator.securityContext`          | Pod-level security context for Milvus Data Coordinator pods | `{}` |
+| `dataCoordinator.containerSecurityContext` | Container-level security context for Milvus Data Coordinator containers | `{}` |
 | `dataCoordinator.heaptrack.enabled`       | Whether to enable heaptrack                             | `false`                                          |
 | `dataCoordinator.profiling.enabled`       | Whether to enable live profiling                   | `false`                                          |
 | `dataCoordinator.activeStandby.enabled`   | Whether to enable active-standby                   | `false`                                          |
@@ -496,6 +514,8 @@ The following table lists the configurable parameters of the Milvus Data Node co
 | `dataNode.nodeSelector`                   | Node labels for Milvus Data Node pods assignment | `{}`                                                 |
 | `dataNode.affinity`                       | Affinity settings for Milvus Data Node pods assignment | `{}`                                           |
 | `dataNode.tolerations`                    | Toleration labels for Milvus Data Node pods assignment | `[]`                                           |
+| `dataNode.securityContext`          | Pod-level security context for Milvus Data Node pods | `{}` |
+| `dataNode.containerSecurityContext` | Container-level security context for Milvus Data Node containers | `{}` |
 | `dataNode.heaptrack.enabled`              | Whether to enable heaptrack                             | `false`                                          |
 | `dataNode.profiling.enabled`              | Whether to enable live profiling                   | `false`                                          |
 | `dataNode.extraEnv`                       | Additional Milvus Data Node container environment variables | `[]`                                      |
@@ -511,6 +531,8 @@ The following table lists the configurable parameters of the Milvus Mixture Coor
 | `mixCoordinator.nodeSelector`            | Node labels for Milvus Data Coordinator pods assignment | `{}`                                          |
 | `mixCoordinator.affinity`                | Affinity settings for Milvus Data Coordinator pods assignment  | `{}`                                   |
 | `mixCoordinator.tolerations`             | Toleration labels for Milvus Data Coordinator pods assignment | `[]`                                    |
+| `mixCoordinator.securityContext`          | Pod-level security context for Milvus Mix Coordinator pods | `{}` |
+| `mixCoordinator.containerSecurityContext` | Container-level security context for Milvus Mix Coordinator containers | `{}` |
 | `mixCoordinator.heaptrack.enabled`       | Whether to enable heaptrack                             | `false`                                          |
 | `mixCoordinator.profiling.enabled`       | Whether to enable live profiling                   | `false`                                          |
 | `mixCoordinator.activeStandby.enabled`   | Whether to enable active-standby                   | `false`                                          |
