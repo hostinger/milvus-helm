@@ -38,6 +38,17 @@ affinity: {}
 labels: {}
 annotations: {}
 
+# Global pod-level securityContext
+# If set, this will apply to all milvus components
+# Individual components can be set to a different securityContext
+securityContext: {}
+
+# Global container-level securityContext
+# If set, this will apply to every container and initContainer of all milvus
+# components
+# Individual components can be set to a different containerSecurityContext
+containerSecurityContext: {}
+
 # Extra configs for milvus.yaml
 # If set, this config will merge into milvus.yaml
 # Please follow the config structure in the milvus.yaml
@@ -187,6 +198,8 @@ standalone:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   heaptrack:
     enabled: false
@@ -229,6 +242,8 @@ proxy:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -268,6 +283,8 @@ rootCoordinator:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -295,6 +312,8 @@ queryCoordinator:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -325,6 +344,8 @@ queryNode:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -348,6 +369,8 @@ indexCoordinator:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -378,6 +401,8 @@ indexNode:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -401,6 +426,8 @@ dataCoordinator:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -428,6 +455,8 @@ dataNode:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -449,6 +478,8 @@ mixCoordinator:
   nodeSelector: {}
   affinity: {}
   tolerations: []
+  securityContext: {}
+  containerSecurityContext: {}
   extraEnv: []
   extraVolumeMounts: []
   extraVolumes: []
@@ -482,6 +513,8 @@ attu:
     # loadBalancerIP: ""
   resources: {}
   podLabels: {}
+  securityContext: {}
+  containerSecurityContext: {}
   ingress:
     enabled: false
     className: ""
