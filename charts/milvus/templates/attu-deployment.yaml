@@ -7,6 +7,10 @@ metadata:
 {{ include "milvus.labels" . | indent 4 }}
     component: "attu"
 {{ include "milvus.ud.labels" . | indent 4 }}
+{{- if .Values.annotations }}
+  annotations:
+{{ include "milvus.ud.annotations" . | indent 4 }}
+{{- end }}
 spec:
   replicas: 1
   selector:
@@ -23,6 +27,14 @@ spec:
 {{ toYaml .Values.attu.podLabels | indent 8 }}
 {{- end }}
     spec:
+      {{- if and (.Values.securityContext) (not .Values.attu.securityContext) }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
+      {{- end }}
+      {{- if .Values.attu.securityContext }}
+      securityContext:
+        {{- toYaml .Values.attu.securityContext | nindent 8 }}
+      {{- end }}
       {{- if .Values.attu.image.pullSecrets }}
       imagePullSecrets:
       {{- range .Values.attu.image.pullSecrets }}
@@ -33,6 +45,14 @@ spec:
       - name: attu
         image: {{ .Values.attu.image.repository }}:{{ .Values.attu.image.tag }}
         imagePullPolicy: {{ .Values.attu.image.pullPolicy }}
+        {{- if and (.Values.containerSecurityContext) (not .Values.attu.containerSecurityContext) }}
+        securityContext:
+          {{- toYaml .Values.containerSecurityContext | nindent 10 }}
+        {{- end }}
+        {{- if .Values.attu.containerSecurityContext }}
+        securityContext:
+          {{- toYaml .Values.attu.containerSecurityContext | nindent 10 }}
+        {{- end }}
         ports:
         - name: attu
           containerPort: 3000
